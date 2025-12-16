@@ -1,0 +1,10 @@
+# https://lefthook.dev/configuration/index.html
+commit-msg:
+  commands:
+    "lint commit message":
+      run: cog verify --file {1}
+pre-commit:
+  commands:
+    "detect secrets":
+      files: git diff --name-only --diff-filter=d --staged
+      run: gitleaks protect --no-banner --staged --redact --verbose 
